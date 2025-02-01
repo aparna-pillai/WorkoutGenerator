@@ -1,18 +1,99 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './MainPage.css'; // Import the CSS file
 
-function MainPage(props) {
-    const navigate = useNavigate(); // Initialize useNavigate hook
+function MainPage() {
+    const navigate = useNavigate();
 
     const handleLogout = () => {
         navigate('/login');
     };
 
+    const [fitnessGoal, setFitnessGoal] = useState("");
+    const [equipmentAccess, setEquipmentAccess] = useState("");
+    const [workoutDuration, setWorkoutDuration] = useState("");
+    const [restDays, setRestDays] = useState([]);
+
+    const handleCheckboxChange = (day) => {
+        setRestDays((prev) =>
+          prev.includes(day) ? prev.filter((d) => d !== day) : [...prev, day]
+        );
+    };
+
     return (
-        <div className={`relative min-h-screen flex`}>
-            <div className="container max-w-screen-xl mx-auto flex flex-col justify-center items-center">
-                <p className='text-4xl '>Main Page</p>
-                <button onClick={handleLogout} className=" bg-blue-500 text-white mt-12 py-2 px-12 rounded-md hover:bg-blue-600">
+        <div className="main-container">
+            <div className="form-container">
+                <h1>RU Working Out? Let's Get Started!</h1>
+
+                {/* Fitness Goals */}
+                <div className="input-group">
+                    <h2>Choose Your Fitness Goal</h2>
+                    {["Muscle Gain", "Endurance Improvement", "Flexibility & Mobility"].map((goal) => (
+                        <label key={goal}>
+                            <input
+                                type="radio"
+                                name="fitnessGoal"
+                                value={goal}
+                                checked={fitnessGoal === goal}
+                                onChange={(e) => setFitnessGoal(e.target.value)}
+                            />
+                            {goal}
+                        </label>
+                    ))}
+                </div>
+
+                {/* Equipment Access */}
+                <div className="input-group">
+                    <h2>Is Equipment Accessible to You?</h2>
+                    {["Yes", "No"].map((option) => (
+                        <label key={option}>
+                            <input
+                                type="radio"
+                                name="equipmentAccess"
+                                value={option}
+                                checked={equipmentAccess === option}
+                                onChange={(e) => setEquipmentAccess(e.target.value)}
+                            />
+                            {option}
+                        </label>
+                    ))}
+                </div>
+
+                {/* Workout Duration */}
+                <div className="input-group">
+                    <h2>Workout Duration</h2>
+                    {["15 min", "30 min", "45 min", "60 min"].map((duration) => (
+                        <label key={duration}>
+                            <input
+                                type="radio"
+                                name="workoutDuration"
+                                value={duration}
+                                checked={workoutDuration === duration}
+                                onChange={(e) => setWorkoutDuration(e.target.value)}
+                            />
+                            {duration}
+                        </label>
+                    ))}
+                </div>
+
+                {/* Rest Days */}
+                <div className="input-group">
+                    <h2>Rest Days (Select all that apply)</h2>
+                    {["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"].map((day) => (
+                        <label key={day}>
+                            <input
+                                type="checkbox"
+                                value={day}
+                                checked={restDays.includes(day)}
+                                onChange={() => handleCheckboxChange(day)}
+                            />
+                            {day}
+                        </label>
+                    ))}
+                </div>
+
+                {/* Logout Button */}
+                <button onClick={handleLogout}>
                     Logout
                 </button>
             </div>

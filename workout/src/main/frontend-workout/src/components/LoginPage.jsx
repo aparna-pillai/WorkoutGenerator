@@ -1,8 +1,9 @@
 // Import React and necessary hooks
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
+import './LoginPage.css'; // Import the CSS file
 
-function LoginPage(props) {
+function LoginPage() {
     // State variables for username, password, and error message
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -14,38 +15,45 @@ function LoginPage(props) {
     // Function to handle form submission
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        // Example validation (replace with actual authentication logic)
+        if (username === '' || password === '') {
+            setErrorMessage('Username and password cannot be empty.');
+            return;
+        }
+
         // Navigate to main page
         navigate('/main');
     };
 
     // JSX structure for login form
     return (
-        <div className="flex items-center justify-center min-h-screen">
-            <div className="mx-auto p-6 bg-white rounded-md shadow-md">
-                <h2 className="text-2xl font-semibold mb-6 text-center">Login</h2>
+        <div className="login-container">
+            <div className="login-form">
+                <h1>RU Working Out?</h1>
                 <form onSubmit={handleSubmit}>
-                    <div className="mb-4">
-                        <label htmlFor="username" className="block mb-2">Username:</label>
+                    <div>
+                        <label htmlFor="username">Username:</label>
                         <input
                             type="text"
                             id="username"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
-                            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                            placeholder="Enter your username"
                         />
                     </div>
-                    <div className="mb-4">
-                        <label htmlFor="password" className="block mb-2">Password:</label>
+                    <div>
+                        <label htmlFor="password">Password:</label>
                         <input
                             type="password"
                             id="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                            placeholder="Enter your password"
                         />
                     </div>
-                    <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600">Login</button>
-                    {errorMessage && <p className="text-red-500 text-sm whitespace-pre-line text-center mt-4 ">{errorMessage}</p>} {/* Display error message if exists */}
+                    <button type="submit">Login</button>
+                    {errorMessage && <p className="error-message">{errorMessage}</p>} {/* Display error message if exists */}
                 </form>
             </div>
         </div>
