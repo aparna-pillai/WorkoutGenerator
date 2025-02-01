@@ -9,6 +9,11 @@ function MainPage() {
         navigate('/login');
     };
 
+    const handleSubmit = () => {
+        console.log({ fitnessGoal, equipmentAccess, workoutDuration, restDays });
+        navigate('/Profile');
+    };
+
     const [fitnessGoal, setFitnessGoal] = useState("");
     const [equipmentAccess, setEquipmentAccess] = useState("");
     const [workoutDuration, setWorkoutDuration] = useState("");
@@ -91,6 +96,14 @@ function MainPage() {
                         </label>
                     ))}
                 </div>
+
+                {/* Submit Button */}
+            <button
+                onClick={handleSubmit}
+                className="bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-md w-full mt-4"
+            >
+                Submit
+            </button>
 
                 {/* Logout Button */}
                 <button onClick={handleLogout}>
