@@ -1,4 +1,6 @@
-# WorkoutGenerator
+# RUWorkingOut
+
+By: Sara Deshmukh, Aparna Pillai, Sanika Deshmukh
 
 RUWorkingOut is the ultimate fitness app for college students. We understand that finding time to exercise can be challenging, but with RUWorkingOut, staying active has never been easier or more customizable. Our Gen AI feature creates a personalized workout schedule based on your goals, typical workout duration, whether or not you have equipment available, and availability.
 
