@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './MainPage.css'; // Import the CSS file
+import axios from "../services/api";
 
 function MainPage() {
     const navigate = useNavigate();
@@ -11,7 +12,31 @@ function MainPage() {
 
     const handleSubmit = () => {
         console.log({ fitnessGoal, equipmentAccess, workoutDuration, restDays });
-        navigate('/Profile');
+        const jsonString = JSON.stringify(restDays);
+        const data = {
+            'goal': fitnessGoal,
+            'duration': workoutDuration,
+            'equipment':equipmentAccess,
+            'restDays': jsonString,
+          };
+        axios // fetches from the selected filter type to set the loan amount and row count
+        .post("/goals/add",data,{
+        headers:{
+          'Access-Control-Allow-Origin': "http://localhost:3000/",
+          'Access-Control-Allow-Methods': 'POST',
+          'Content-Type': 'application/json',
+        },
+        multiValueHeaders:{
+          "content-type":["text/plain"],
+          "content-type":["application/json"],
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        navigate("/Profile", { state: { workoutData: response.data } });
+      })
+      .catch((error) => console.error("Error fetching rate ", error));
+        //navigate('/Profile');
     };
 
     const [fitnessGoal, setFitnessGoal] = useState("");
@@ -84,7 +109,7 @@ function MainPage() {
                 {/* Rest Days */}
                 <div className="input-group">
                     <h2>Rest Days (Select all that apply)</h2>
-                    {["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"].map((day) => (
+                    {["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].map((day) => (
                         <label key={day}>
                             <input
                                 type="checkbox"
