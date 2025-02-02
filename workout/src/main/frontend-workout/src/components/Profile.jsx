@@ -4,6 +4,7 @@ import './Profile.css'; // Import the CSS file for styling
 import { useState } from 'react';
 import frame1 from './/cat.gif';
 import backgroundImage from ".//confetti.gif";
+import { Link } from "react-router-dom"; // Import Link for navigation
 
 
 function Profile() {
@@ -63,6 +64,14 @@ function Profile() {
     return (
         <div className="profile-container">
             {/* GIF Frame Display */}
+            {count === 4 && (
+                    
+                    <>
+                        <h1>You Have Reached Your Streak! Great Job!</h1>
+                    </>
+                    
+            )}
+            <h1>Compete With Friends! Take a Look at <Link to="/Leaderboard"> How Everyone's Doing!</Link></h1>
             <div className={`gif-container ${count === 4 ? "with-background" : ""}`}>
                 {count === 4 && (
                     

@@ -1,3 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+
+/* Apply Lilita One font to the entire page */
+body {
+    font-family: 'Lilita One', sans-serif;
+}
+
+
 /* Profile Page Container */
 .profile-container {
     display: flex;

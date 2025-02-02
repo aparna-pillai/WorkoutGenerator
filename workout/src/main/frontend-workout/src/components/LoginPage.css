@@ -1,12 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+
+/* Apply Lilita One font to the entire page */
+body {
+    font-family: 'Lilita One', sans-serif;
+}
+
 /* Background container */
 .login-container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
-    height: 100vh;
+    height: 70vh;
     background: rgb(163, 29, 29);
     overflow: hidden;
     position: relative;
+    margin-top:80px;
+    padding:0px
+
+    
+}
+
+.login-wrapper {
+    height:50vh;
+    background: rgb(163, 29, 29);
+    margin-bottom:20px;
+    z-index: 2;
+    position: relative; 
+}
+
+.logoFitting {
+    align-items:center;
+    display:flex;
+    justify-content:flex-end;
+    margin-left:700px;
+    margin-bottom:-70px;
+    padding:10px;
+    width:300px
 }
 
 /* Dumbbell Container */
@@ -15,7 +45,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     pointer-events: none; /* Prevent interaction */
     z-index: 1; /* Keeps dumbbells in background */
 }

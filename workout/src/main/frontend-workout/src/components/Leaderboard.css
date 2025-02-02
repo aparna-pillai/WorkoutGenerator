@@ -1,0 +1,123 @@
+/* Wrapper for full page */
+.leaderboard-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Center everything */
+    height: 100vh; /* Full height */
+    background: rgb(163, 29, 29);
+}
+
+/* Center the Main Header */
+.leaderboard-wrapper h1 {
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px; /* Pushes leaderboard down */
+    color: black; /* White text for contrast */
+    animation: blink 1s infinite;
+    text-shadow: 0 0 10px #FF6347, 0 0 20px #FF6347, 0 0 30px #FF6347, 0 0 40px #FF6347; /* Glowing effect */
+}
+
+/* Leaderboard Container */
+.leaderboard-container {
+    width: 100%;
+    max-width: 400px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    margin-top: 20px; /* Moves it lower */
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Title */
+.leaderboard-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+/* Leaderboard Table */
+.leaderboard {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Individual Leaderboard Row */
+.leaderboard-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+/* Username on the Left */
+.user-name {
+    color: #333;
+}
+
+/* Streak on the Right */
+.streak {
+    color: #ff4500;
+    font-weight: bold;
+}
+
+/* Logout Button */
+.logout-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background: rgb(109, 35, 35);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.logout-button:hover {
+    background:rgb(229, 208, 172);
+}
+
+/* Left Image */
+.image1{
+    bottom: -80px;
+    left: -60px;
+}
+
+/* Right Image */
+.image2 {
+    bottom: -80px;
+    right: -50px;
+}
+
+/* Left Image */
+.image3 {
+    bottom: -60px;
+    left: 200px;
+}
+
+/* Right Image */
+.image4 {
+    bottom: -80px;
+    right: 180px;
+}
