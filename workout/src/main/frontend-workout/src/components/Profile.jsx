@@ -119,6 +119,8 @@ function Profile() {
                 </div>
             </div>
 
+            <h2>We are always looking for feedback! Enter your suggestions to improve RUWorkingOut! <Link to="https://docs.google.com/forms/d/e/1FAIpQLSd2rHIKePZNv_11Yp594ctqtLfnuRb_lCUNqoWpedZ5GIm9og/viewform" target="_blank"> Link to Feedback</Link></h2>
+
             {/* Logout Button */}
             <button onClick={handleLogout} className="logout-button">
                 Logout
