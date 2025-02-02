@@ -1,30 +1,124 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import './Profile.css'; // Import the CSS file for styling
+import { useState } from 'react';
+import frame1 from './/cat.gif';
+import backgroundImage from ".//confetti.gif";
+
 
 function Profile() {
     const navigate = useNavigate();
     const location = useLocation();
-
     const workoutData = location.state?.workoutData || "No data received";
+    const [count, setCount] = useState(1);
+    
 
+    // Function to handle logout
     const handleLogout = () => {
         navigate('/login');
     };
 
+
+    const increaseStreak = () => {
+        setCount((prev) => (prev === 4 ? 1 : prev + 1)); // Reset after 4
+    };
+
+    const resetStreak = () => {
+        setCount(1); // Reset to first frame
+    };
+
+    const streakImages = Array.from({ length: count }, (_, index) => (
+        <img
+            key={index}
+            src={frame1}
+            alt="Workout Progress"
+            style={{ width: "100px", height: "auto", marginRight: "10px" }}
+        />
+    ));
+
+    // Function to parse workout data correctly by splitting based on known day names
+    const parseWorkoutData = (data) => {
+        const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+        const days = {};
+        let currentDay = "";
+
+        // Split data into lines and correctly group workouts under the right day
+        data.split("\n").forEach(line => {
+            const trimmedLine = line.trim();
+            if (daysOfWeek.includes(trimmedLine.replace(":", ""))) {
+                currentDay = trimmedLine.replace(":", ""); // Remove ":" from day names
+                days[currentDay] = [];
+            } else if (currentDay && trimmedLine) {
+                days[currentDay].push(trimmedLine);
+            }
+        });
+
+        return days;
+    };
+
+    // Convert workout data into structured format
+    const structuredWorkoutData = parseWorkoutData(workoutData);
+    //const gifFrames = [frame1, frame2, frame3, frame4]; // Array of GIF frames
+
     return (
-        <div>
-            <h1>Profile Page</h1>
-            <h2>Generated Workout Data:</h2>
-            <pre>{workoutData}</pre>
+        <div className="profile-container">
+            {/* GIF Frame Display */}
+            <div className={`gif-container ${count === 4 ? "with-background" : ""}`}>
+                {count === 4 && (
+                    
+                    <>
+                        <img
+                        src={backgroundImage}
+                        alt="Background Effect"
+                        className="background-image"
+                        />
+                        
+                    </>
+                    
+                )}
+                {streakImages}
+            </div>
+
+            {/* Streak Counter */}
+            <h3 className="streak-text">Streak: {count}</h3>
+
+            {/* Streak Buttons */}
+            <div className="button-container">
+                <button onClick={increaseStreak} className="streak-button">Increase Streak</button>
+                <button onClick={resetStreak} className="reset-button">Reset Streak</button>
+            </div>
+
+            <h1 className="title">Here's Your Workout Plan for the Week!</h1>
+
+            {/* Scrollable workout container */}
+            <div className="workout-scroll-container">
+                <div className="workout-blocks">
+                    {Object.entries(structuredWorkoutData).map(([day, workouts]) => (
+                        <div key={day} className="workout-block">
+                            <h3 className="workout-day">{day}</h3>
+                            <ul className="workout-list">
+                                {workouts.length > 0 ? (
+                                    workouts.map((workout, index) => (
+                                        <li key={index}>{workout}</li>
+                                    ))
+                                ) : (
+                                    <li>Rest day</li>
+                                )}
+                            </ul>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
             {/* Logout Button */}
-            <button onClick={handleLogout}>
-                    Logout
+            <button onClick={handleLogout} className="logout-button">
+                Logout
             </button>
         </div>
     );
-    
 }
 
 export default Profile;
+
+
 

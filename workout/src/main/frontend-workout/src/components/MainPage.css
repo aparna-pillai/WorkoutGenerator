@@ -5,7 +5,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #5DA130; /* Grass Green */
+    background-color: rgb(163, 29, 29); /* Grass Green */
     color: white;
     padding: 20px;
 }
@@ -52,12 +52,12 @@ input[type="radio"], input[type="checkbox"] {
 
 /* Styling for the submit button */
 button {
-    background-color: #ff4c4c;
+    background-color: rgb(109, 35, 35);
     color: white;
     padding: 10px 15px;
     border-color: black;
     border-radius: 5px;
-    width: 100%;
+    width: 100px;
     cursor: pointer;
     font-size: 16px;
     transition: background 0.3s ease;
@@ -65,4 +65,36 @@ button {
 
 button:hover {
     background-color: #cc0000;
+}
+
+.logout {
+    background-color: rgb(109, 35, 35);
+    color: white;
+    padding: 10px 15px;
+    border-color: black;
+    border-radius: 5px;
+    width: 100px;
+    margin-left:50px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease;
+}
+
+/* Left Image */
+.left-image {
+    bottom: -80px;
+    left: -60px;
+}
+
+/* Right Image */
+.right-image {
+    bottom: -80px;
+    right: -50px;
+}
+
+.background-image {
+    position: absolute;
+    width: 400px; /* Adjust size */
+    opacity: 1.0; /* Makes them blend with background */
+    z-index: 1; /* Keeps them behind the form */
 }
